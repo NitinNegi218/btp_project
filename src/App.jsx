@@ -1,4 +1,5 @@
 import Navbar from "./Navbar"
+import Footer from "./Footer"
 import {
   BrowserRouter,
   Route,
@@ -21,6 +22,7 @@ function App() {
         </Route>
       </Routes>
     </div>
+    <Footer/>
     </BrowserRouter>
   )
 }
