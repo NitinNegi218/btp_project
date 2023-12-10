@@ -5,9 +5,9 @@
   left: 0;
   right: 0;
   max-width: 100%;
-  max-height: 60%;
+  max-height: 100%;
   padding: 10px;
-  margin: auto;
+  margin-top: 20px;
   margin-left: 30px;
 }
 .map-wrapper{

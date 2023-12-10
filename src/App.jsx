@@ -1,29 +1,27 @@
-import Navbar from "./Navbar"
-import Footer from "./Footer"
-import {
-  BrowserRouter,
-  Route,
-  Routes
-} from "react-router-dom";
-import { React } from "react"
-import "./App.css"
-import Home from "./Home"
+import React from 'react';
+import Navbar from './components/Navbar';
+import './App.css';
+import Home from './components/pages/Home';
+import { BrowserRouter, Route,Routes} from 'react-router-dom';
+import Services from './components/pages/Services';
+import Products from './components/pages/Products';
+import SignUp from './components/pages/SignUp';
+
 function App() {
-  return(
+  return (
+    
     <BrowserRouter>
-    <div style={{width: "100vw",
-                height: "100vh",
-                backgroundColor: 
-                "#eeeeee"}}
-            >
        <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}>
         </Route>
+        <Route path="/services" element={<Services/>}>
+        </Route>
+        <Route path="/product" element={<Products/>}>
+        </Route>
       </Routes>
-    </div>
-    <Footer/>
     </BrowserRouter>
-  )
+  );
 }
-export default App
+
+export default App;
