@@ -1,10 +1,10 @@
-// Map.js
-
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import './Map.css';
+import axios from 'axios';
+import Table from './Table'; // Import your Table component
 
 mapboxgl.accessToken =
   'pk.eyJ1Ijoibml0aW5uZWdpMjciLCJhIjoiY2xweDJ6b2tpMG13eDJyazdhaXR6YWhhaSJ9.C5HWmqTda2O9AohKMN6REQ';
@@ -15,6 +15,7 @@ const Map = () => {
   const [lng, setLng] = useState(5);
   const [lat, setLat] = useState(34);
   const [zoom, setZoom] = useState(1.5);
+  const [tableData, setTableData] = useState([]); // State to hold table data
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -29,7 +30,7 @@ const Map = () => {
     const geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       mapboxgl: mapboxgl,
-      countries: '', // Set the country filter (optional)
+      countries: '',
     });
 
     map.addControl(geocoder);
@@ -46,12 +47,26 @@ const Map = () => {
 
         map.setCenter([lng, lat]);
         map.setZoom(12);
+
+        // Make a POST request with latitude in the request header
+        axios.post('/api/location', null, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Latitude': lat.toString()
+          }
+        })
+        .then(response => {
+          // Handle the response and set the table data
+          setTableData(response.data);
+        })
+        .catch(error => {
+          console.error('Error making the POST request:', error);
+        });
       } else {
         console.error('Invalid geocoder result:', event.result);
       }
     });
 
-    // Add a move event listener to update the state when the map is manually moved
     map.on('move', () => {
       const center = map.getCenter();
       setLng(center.lng.toFixed(4));
@@ -63,12 +78,15 @@ const Map = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className='map-wrapper' style={{ height: '100vh', width: '50vw' }}>
-      <div className='map-container' ref={mapContainerRef}>
-        <div className='sidebarStyle'>
-          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+    <div>
+      <div className='map-wrapper' style={{ height: '100vh', width: '50vw' }}>
+        <div className='map-container' ref={mapContainerRef}>
+          <div className='sidebarStyle'>
+            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+          </div>
         </div>
       </div>
+      {/* <Table data={tableData} /> */}
     </div>
   );
 };

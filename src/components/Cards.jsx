@@ -7,11 +7,11 @@ import Grid from '@mui/material/Grid';
 
 const OutlinedCard = () => {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-      <Grid container spacing={2}>
+    <Box >
+      <Grid container spacing={2} justifyContent="center" textAlign="center">
         {[0].map((value) => (
-          <Grid item key={value} xs={12} md={4}>
-            <Card variant="outlined" sx={{ minHeight: 150, padding: 2, margin: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <Grid >
+            <Card variant="outlined" >
               <CardContent>
                 <Typography variant="h5" component="div">
                   Solar Declination angle
@@ -27,13 +27,7 @@ const OutlinedCard = () => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
-        ))}
-      </Grid>
-      <Grid container spacing={2} sx={{ mt: 2 }}>
-        {[1].map((value) => (
-          <Grid item key={value} xs={12} md={6}>
-            <Card variant="outlined" sx={{ minHeight: 150, padding: 2, margin: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <Card variant="outlined">
               <CardContent>
                 <Typography variant="h5" component="div">
                   Solar Hour angle
@@ -49,13 +43,7 @@ const OutlinedCard = () => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
-        ))}
-      </Grid>
-      <Grid container spacing={2} sx={{ mt: 2 }}>
-        {[2].map((value) => (
-          <Grid item key={value} xs={12} md={4}>
-            <Card variant="outlined" sx={{ minHeight: 150, padding: 2, margin: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <Card  variant="outlined">
               <CardContent>
                 <Typography variant="h5" component="div">
                   Azimuth angle
@@ -71,13 +59,7 @@ const OutlinedCard = () => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
-        ))}
-      </Grid>
-      <Grid container spacing={2} sx={{ mt: 2 }}>
-        {[3].map((value) => (
-          <Grid item key={value} xs={12} md={6}>
-            <Card variant="outlined" sx={{ minHeight: 150, padding: 2, margin: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <Card  variant="outlined">
               <CardContent>
                 <Typography variant="h5" component="div">
                   Tilt angle
@@ -93,13 +75,7 @@ const OutlinedCard = () => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
-        ))}
-      </Grid>
-      <Grid container spacing={2} sx={{ mt: 2 }}>
-        {[4].map((value) => (
-          <Grid item key={value} xs={12} md={4}>
-            <Card variant="outlined" sx={{ minHeight: 150, padding: 2, margin: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <Card variant="outlined">
               <CardContent>
                 <Typography variant="h5" component="div">
                   Julian Days
