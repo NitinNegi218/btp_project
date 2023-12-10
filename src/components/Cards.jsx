@@ -4,14 +4,32 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+
+const StyledCard = styled(Card)({
+  minHeight: 200,
+  padding: 2,
+  margin: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  transition: 'box-shadow 0.3s ease',
+  marginBottom: '10px',
+  backgroundColor: '#99d8e7',
+
+  '&:hover': {
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
+  },
+});
+
 
 const OutlinedCard = () => {
   return (
     <Box >
-      <Grid container spacing={2} justifyContent="center" textAlign="center">
+      <Grid container spacing={2} justifyContent="center" textAlign="center" display="flex">
         {[0].map((value) => (
-          <Grid >
-            <Card variant="outlined" >
+          <Grid item key={value} xs={12} md={4} lg={10}>
+            <StyledCard variant="outlined" >
               <CardContent>
                 <Typography variant="h5" component="div">
                   Solar Declination angle
@@ -26,8 +44,8 @@ const OutlinedCard = () => {
                   Value: 
                 </Typography>
               </CardContent>
-            </Card>
-            <Card variant="outlined">
+            </StyledCard>
+            <StyledCard variant="outlined">
               <CardContent>
                 <Typography variant="h5" component="div">
                   Solar Hour angle
@@ -42,8 +60,8 @@ const OutlinedCard = () => {
                   Value: 
                 </Typography>
               </CardContent>
-            </Card>
-            <Card  variant="outlined">
+            </StyledCard>
+            <StyledCard  variant="outlined">
               <CardContent>
                 <Typography variant="h5" component="div">
                   Azimuth angle
@@ -58,8 +76,8 @@ const OutlinedCard = () => {
                   Value: 
                 </Typography>
               </CardContent>
-            </Card>
-            <Card  variant="outlined">
+            </StyledCard>
+            <StyledCard  variant="outlined">
               <CardContent>
                 <Typography variant="h5" component="div">
                   Tilt angle
@@ -74,8 +92,8 @@ const OutlinedCard = () => {
                   Value: 
                 </Typography>
               </CardContent>
-            </Card>
-            <Card variant="outlined">
+            </StyledCard>
+            <StyledCard variant="outlined">
               <CardContent>
                 <Typography variant="h5" component="div">
                   Julian Days
@@ -90,7 +108,7 @@ const OutlinedCard = () => {
                   Value: 
                 </Typography>
               </CardContent>
-            </Card>
+            </StyledCard>
           </Grid>
         ))}
       </Grid>
