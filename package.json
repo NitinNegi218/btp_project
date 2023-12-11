@@ -13,13 +13,11 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^1.6.2",
-    "build": "^0.1.4",
     "mapbox-gl": "^2.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1",
-    "react-scripts": "^5.0.1",
-    "start": "^5.1.0"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
