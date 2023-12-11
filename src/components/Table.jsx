@@ -1,29 +1,16 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-// Import the JSON file
-const tiltData = {
-  "06:00": "30°",
-  "07:00": "45",
-  "08:00": "",
-  "09:00": "",
-  "10:00": "",
-  "11:00": "",
-  "12:00": "",
-  "13:00": "",
-  "14:00": "",
-  "15:00": "",
-  "16:00": "",
-  "17:00": "",
-  "18:00": ""
-};
 
-const Table = () => {
+const Table = ({data}) => {
+  if (!data) {
+    return null; // or return some default content or loading indicator
+  }
   return (
    
     <div style={{ display: 'flex', justifyContent: 'center' ,width:"100%",padding:"20px",height:'100%',margin:"auto"}}>
       <div style={{ flex: 1 }}>
-        <TiltAngleTable tiltData={tiltData} />
+        <TiltAngleTable tiltData={data} />
       </div>
     </div>
   );

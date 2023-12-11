@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
@@ -16,6 +16,34 @@ const Map = () => {
   const [lat, setLat] = useState(34);
   const [zoom, setZoom] = useState(1.5);
   const [tableData, setTableData] = useState([]); // State to hold table data
+
+  const handleGeocoderResult = useCallback((event) => {
+    const { center } = event.result.geometry;
+
+    if (center && center.length === 2 && !isNaN(center[0]) && !isNaN(center[1])) {
+      const [lng, lat] = center;
+
+      setLng(lng);
+      setLat(lat);
+      setZoom(12);
+
+      // Make a POST request with latitude in the request body
+      axios.post('https://solar-plus.onrender.com/calculate', { latitude: lat }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(response => {
+        // Handle the response and set the table data
+        setTableData(response.data);
+      })
+      .catch(error => {
+        console.error('Error making the POST request:', error);
+      });
+    } else {
+      console.error('Invalid geocoder result:', event.result);
+    }
+  }, []);
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -35,36 +63,26 @@ const Map = () => {
 
     map.addControl(geocoder);
 
-    geocoder.on('result', (event) => {
-      const { center } = event.result.geometry;
+    geocoder.on('result', handleGeocoderResult);
 
-      if (center && center.length === 2 && !isNaN(center[0]) && !isNaN(center[1])) {
-        const [lng, lat] = center;
+    map.on('mousemove', (event) => {
+      const { lng, lat } = event.lngLat;
+      setLng(lng);
+      setLat(lat);
 
-        setLng(lng);
-        setLat(lat);
-        setZoom(12);
-
-        map.setCenter([lng, lat]);
-        map.setZoom(12);
-
-        // Make a POST request with latitude in the request header
-        axios.post('/api/location', null, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Latitude': lat.toString()
-          }
-        })
-        .then(response => {
-          // Handle the response and set the table data
-          setTableData(response.data);
-        })
-        .catch(error => {
-          console.error('Error making the POST request:', error);
-        });
-      } else {
-        console.error('Invalid geocoder result:', event.result);
-      }
+      // Make a POST request with latitude in the request body
+      axios.post('https://solar-plus.onrender.com/calculate', { latitude: lat }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(response => {
+        // Handle the response and set the table data
+        setTableData(response.data);
+      })
+      .catch(error => {
+        console.error('Error making the POST request:', error);
+      });
     });
 
     map.on('move', () => {
@@ -75,10 +93,10 @@ const Map = () => {
     });
 
     return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [handleGeocoderResult]);
 
   return (
-    <div>
+    <div className='container'>
       <div className='map-wrapper' style={{ height: '100vh', width: '50vw' }}>
         <div className='map-container' ref={mapContainerRef}>
           <div className='sidebarStyle'>
@@ -86,7 +104,9 @@ const Map = () => {
           </div>
         </div>
       </div>
-      {/* <Table data={tableData} /> */}
+      <div className='table-wrapper'>
+        <Table data={tableData} />
+      </div>
     </div>
   );
 };
