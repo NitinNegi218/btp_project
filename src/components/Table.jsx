@@ -8,7 +8,7 @@ const Table = ({data}) => {
   }
   return (
    
-    <div style={{ display: 'flex', justifyContent: 'center' ,width:"100%",padding:"20px",height:'100%',margin:"auto"}}>
+    <div style={{ display: 'flex', justifyContent: 'center',width:"600px",height:'100%',margin:"15px"}}>
       <div style={{ flex: 1 }}>
         <TiltAngleTable tiltData={data} />
       </div>
@@ -18,7 +18,7 @@ const Table = ({data}) => {
 
 const TiltAngleTable = ({ tiltData }) => {
   return (
-    <table style={{ borderCollapse: 'collapse', width: '100%', margin: '20px auto', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+    <table style={{ borderCollapse: 'collapse', width: '100%', margin: '20px auto',maxWidth: '800px', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
       <thead style={{ backgroundColor: '#2c3e50', color: '#ecf0f1' }}>
         <tr>
           <th style={{ border: '1px solid #34495e', textAlign: 'left', padding: '12px'}}>

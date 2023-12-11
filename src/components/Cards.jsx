@@ -15,6 +15,7 @@ const StyledCard = styled(Card)({
   justifyContent: 'space-between',
   transition: 'box-shadow 0.3s ease',
   marginBottom: '10px',
+  marginTop:'20px',
   backgroundColor: '#99d8e7',
 
   '&:hover': {
@@ -39,11 +40,6 @@ const OutlinedCard = () => {
                   The solar declination angle (δ) is the angle between the rays of the sun and the plane of the Earth's equator. It varies throughout the year due to the tilt of the Earth's axis.
                 </Typography>
               </CardContent>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  Value: 
-                </Typography>
-              </CardContent>
             </StyledCard>
             <StyledCard variant="outlined">
               <CardContent>
@@ -53,11 +49,6 @@ const OutlinedCard = () => {
                 <br />
                 <Typography variant="body2">
                   The Solar Hour Angle (H) is a measure of the time since solar noon, expressed in angular measurement (degrees). It represents the position of the sun in the sky and is used in solar energy calculations.
-                </Typography>
-              </CardContent>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  Value: 
                 </Typography>
               </CardContent>
             </StyledCard>
@@ -71,11 +62,6 @@ const OutlinedCard = () => {
                   The Solar Azimuth Angle (Az) is the compass direction from which the sunlight is coming at any specific point on the earth's surface. It is measured in degrees clockwise from the north.
                 </Typography>
               </CardContent>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  Value: 
-                </Typography>
-              </CardContent>
             </StyledCard>
             <StyledCard  variant="outlined">
               <CardContent>
@@ -87,11 +73,6 @@ const OutlinedCard = () => {
                   The tilt angle for solar panels, often referred to as the solar panel tilt or inclination angle, is the angle between the solar panel and the horizontal plane. The optimal tilt angle depends on the geographical location of the solar installation and the specific goals of the system (e.g., maximizing energy production throughout the year or optimizing for a specific season).
                 </Typography>
               </CardContent>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  Value: 
-                </Typography>
-              </CardContent>
             </StyledCard>
             <StyledCard variant="outlined">
               <CardContent>
@@ -101,11 +82,6 @@ const OutlinedCard = () => {
                 <br />
                 <Typography variant="body2">
                   The Julian Date (JD) is a continuous count of days since the beginning of the Julian Period on January 1, 4713 BCE.
-                </Typography>
-              </CardContent>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  Value: 
                 </Typography>
               </CardContent>
             </StyledCard>
